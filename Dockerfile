@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:8-jdk-slim
 MAINTAINER Abhisek Datta <abhisek@appsecco.com>
 
 RUN apt-get update
