@@ -1,0 +1,19 @@
+name: SBOM generation
+on: 
+  workflow_dispatch
+jobs:
+  create-sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout of repo
+        uses: actions/checkout@v6.0.2
+
+      - name: Setup Java
+        uses: actions/setup-java@v5.2.0
+        with:
+          distribution: temurin
+          java-version: 8
+          cache: maven
+              
+      - name: Build Maven project
+        run: mvn -B clean package -DskipTest
