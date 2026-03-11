@@ -44,3 +44,18 @@ jobs:
         with:
           name: grype-sbom-report
           path: dvja-sbom-report.json
+
+  retrieve-report:
+    needs: create-sbom
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Grype report artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: grype-sbom-report
+          path: report
+      - name: Display Grype report
+        run: |
+          echo "Contents of downloaded SCA report:"
+          cat report/dvja-sbom-report.json
+
