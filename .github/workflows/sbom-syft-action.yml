@@ -1,0 +1,26 @@
+name: Generate SBOM using syft action
+on:
+  workflow_dispatch:
+jobs:
+  generate-sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 8
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 8
+          cache: maven
+
+      - name: Build Maven project
+        run: mvn -B clean package -DskipTests
+      
+      - name: Generate SBOM using Syft
+        uses: anchore/sbom-action@v0
+        with:
+         path: .
+         format: cyclonedx-json
+         output-file: sbom.json
