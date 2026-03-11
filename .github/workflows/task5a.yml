@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Grype report artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: grype-sbom-report
           path: report
@@ -58,4 +58,3 @@ jobs:
         run: |
           echo "Contents of downloaded SCA report:"
           cat report/dvja-sbom-report.json
-
