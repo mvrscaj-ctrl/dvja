@@ -6,10 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout of repo
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v4
 
       - name: Setup Java
-        uses: actions/setup-java@v5.2.0
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 8
@@ -34,13 +34,13 @@ jobs:
           grype sbom:dvja-sbom.json -o json > dvja-sbom-report.json || true
 
       - name: Upload SBOM
-        uses: actions/upload-artifact@v7.0.0
+        uses: actions/upload-artifact@v4
         with:
           name: sbom-report
           path: dvja-sbom.json
 
       - name: Upload Grype scan report
-        uses: actions/upload-artifact@v7.0.0
+        uses: actions/upload-artifact@v4
         with:
           name: grype-sbom-report
           path: dvja-sbom-report.json
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Grype report artifact
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4
         with:
           name: grype-sbom-report
           path: report
